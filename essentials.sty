@@ -1,0 +1,153 @@
+% Preambule du package : obligatoire. Définition et format %
+\NeedsTeXFormat{LaTeX2e} 
+\ProvidesPackage{essentials}[25/02/24]
+
+%Liste des extensions
+\RequirePackage{color,colortbl}
+\RequirePackage{fancybox,fancyhdr}
+\RequirePackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\RequirePackage{stmaryrd}
+\RequirePackage[thmmarks,amsmath,framed]{ntheorem}
+\RequirePackage{framed}
+\RequirePackage{enumerate}
+\RequirePackage{enumitem}
+\RequirePackage{graphicx}
+\RequirePackage{mathrsfs}
+\RequirePackage{esint}
+\RequirePackage{tikz,lipsum,lmodern}
+\RequirePackage{multicol}
+\RequirePackage[most]{tcolorbox}
+
+
+\ProcessOptions
+% Couleurs ajoutées au package
+\definecolor{mygray}{RGB}{237, 241, 244}
+\definecolor{myborder}{RGB}{77, 78, 79}
+\definecolor{brandblue}{rgb}{0.34, 0.7, 1}
+% New theorems and new tcolor boxes definitions
+
+\newtcolorbox{ContentBox}{
+    colback=mygray,
+    coltitle=black,
+    fonttitle=\bfseries,
+    bottomrule=0pt,
+    toprule=0pt,
+    leftrule=2pt,
+    rightrule=0pt,
+    titlerule=0pt,
+    arc=0pt,
+    outer arc=0pt,
+    colframe=myborder   
+}
+
+\newtcolorbox{DefinitionBox}[2][]{
+    lower separated=false,
+    colback=white!80!gray,
+    colframe=white, fonttitle=\bfseries,
+    colbacktitle=white!50!gray,
+    coltitle=black,
+    enhanced,
+    attach boxed title to top left={xshift=0.5cm,yshift=-2mm},
+    title=#2,#1
+}
+
+
+\newtcolorbox{PropositionBox}[2][]{
+    lower separated=false,
+    colback=white,
+    colframe=black,fonttitle=\bfseries,
+    colbacktitle=black,
+    coltitle=white,
+    enhanced,
+    attach boxed title to top left={yshift=-0.1in,xshift=0.15in},
+    boxed title style={boxrule=0pt,colframe=white,},
+    title=#2,
+		#1
+}
+
+\newtcolorbox{TheoremBox}[2][]{
+		lower separated=false,
+    colback=white!80!gray,
+		colframe=white!20!black,fonttitle=\bfseries,
+		colbacktitle=white!30!gray,
+		coltitle=black,
+		enhanced,
+		attach boxed title to top left={xshift=0.5cm,yshift=-2mm},
+		title=#2,
+		#1
+}
+
+\newtcolorbox{LawBox}[2][]{arc=0mm,
+		lower separated=false,
+		colback=white!30!gray,
+		colframe=white!20!black,fonttitle=\bfseries,
+		colbacktitle=white!30!gray,
+		coltitle=black,
+		enhanced,
+		attach boxed title to top left={xshift=0.5cm, yshift=-2mm},
+		title=#2,
+		#1
+}
+\newtcolorbox{LineBox}[1]{
+  arc=0mm, 
+  bottomtitle=0.5mm,
+  boxrule=0mm,
+  colbacktitle=black!10!white, 
+  coltitle=black, 
+  fonttitle=\bfseries, 
+  left=2.5mm,
+  leftrule=1mm,
+  right=3.5mm,
+  title={#1},
+  toptitle=0.75mm, 
+  colframe=brandblue
+}
+
+\newtcolorbox{subLineBox}[1]{
+  arc=0mm, 
+  bottomtitle=0.5mm,
+  boxrule=0mm,
+  colbacktitle=black!10!white, 
+  coltitle=black, 
+  fonttitle=\bfseries, 
+  left=2.5mm,
+  leftrule=1mm,
+  right=3.5mm,
+  title={#1},
+  toptitle=0.75mm, 
+  colframe=black!30!white
+}
+
+
+%newcommand
+\newcommand{\frameclass}[2]% {\nom de commande à appeler} [nombre d'argument a specifier lors de l'appel] 
+{%
+    \boxput*(-0.8,1)%creation d'une boite titre de position (-0.8 abscisses (soit a gauche) et 1 soit en haut en ordonnée (-1 serait en bas))
+    {
+        \colorbox{white}{#1} %fond de couleur blanche et premier argument en mode large pour le titre
+    }
+    {% on accole cette boite a une fbox avec un separateur bien choisi (15pt) pour mettre un blanc entre les deux
+        \setlength{\fboxsep}{15pt} 
+        \fbox{
+            \begin{minipage}[c]{14.5cm}\begin{small}#2\end{small}\end{minipage}}%lieu du texte
+    }
+}
+
+\newcommand{\suite}[1]{({#1}_n)_{n \in \mathbb{N}}}
+
+\newcommand{\deft}[2]{
+    \begin{tcolorbox}[colback=blue!5!white,colframe=green!35!black,title=#1]
+        #2
+    \end{tcolorbox}
+}
+
+\newcommand{\prop}[2]{
+    \begin{tcolorbox}[colback=white!5!white,colframe=orange!75!black,title=#1]
+        #2
+    \end{tcolorbox}
+}
+
+
+
+% Fin du package
+\endinput
